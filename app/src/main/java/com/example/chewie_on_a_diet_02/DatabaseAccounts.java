@@ -78,4 +78,13 @@ class DatabaseAccounts extends SQLiteOpenHelper {
         }
         return stringBuffer.toString();
     }
+    public String getLaatstemail(){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        Cursor cursor = sqLiteDatabase.rawQuery("select emailadres from databaseaccounts order by id desc limit 1",null);
+        if (cursor.moveToFirst()){
+            stringBuffer.append(cursor.getString(0));
+        }
+        return stringBuffer.toString();
+    }
 }

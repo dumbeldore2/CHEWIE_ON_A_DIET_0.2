@@ -152,4 +152,5 @@ public class ActivityActivity extends AppCompatActivity implements NavigationVie
             textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
         }
     }
+
 }
