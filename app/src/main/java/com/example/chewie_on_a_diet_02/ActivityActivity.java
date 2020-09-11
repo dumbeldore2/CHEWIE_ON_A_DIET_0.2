@@ -40,10 +40,14 @@ public class ActivityActivity extends AppCompatActivity implements NavigationVie
     Toolbar toolbar = null;
 
     TextView activityInfoActivityTextviewJavaClass;
+    TextView textView1NavHeader;
     ListView listView;
     Button button;
     DatabaseActivity databaseActivity;
+    DatabaseAccounts databaseAccounts;
     ArrayList activitys;
+    View headerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,10 +72,15 @@ public class ActivityActivity extends AppCompatActivity implements NavigationVie
         listView = findViewById(R.id.listViewActivityListViewContent);
         button = findViewById(R.id.addActivityButtonContent);
         databaseActivity = new DatabaseActivity(this);
+        databaseAccounts = new DatabaseAccounts(this);
         activitys = new ArrayList();
+        headerView = navigationView.getHeaderView(0);
+        textView1NavHeader = headerView.findViewById(R.id.TextView1NavHeader);
+
         //initialisatie van de functies
         updateListView();
         naamFun();
+        tweedeNaamFun();
     }
 
     @Override
@@ -127,15 +136,20 @@ public class ActivityActivity extends AppCompatActivity implements NavigationVie
         listView.setAdapter(adapter);
     }
 
+
     public void naamFun(){
-        View headerView = navigationView.getHeaderView(0);
-        LinearLayout header = (LinearLayout) headerView.findViewById(R.id.header);
-        header.setOnClickListener(new View.OnClickListener() {
+        textView1NavHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ActivitySettings.class);
+                System.out.println("we are gaming now");
                 startActivity(intent);
             }
         });
+    }
+    public void tweedeNaamFun(){
+        if (databaseAccounts.erIsAlDatas()){
+            textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+        }
     }
 }

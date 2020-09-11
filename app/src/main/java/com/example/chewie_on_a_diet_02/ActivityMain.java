@@ -26,7 +26,9 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar = null;
-
+    View headerView;
+    TextView textView1NavHeader;
+    DatabaseAccounts databaseAccounts;
     //variabelen
 
     @Override
@@ -38,6 +40,9 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        headerView = navigationView.getHeaderView(0);
+        textView1NavHeader = headerView.findViewById(R.id.TextView1NavHeader);
+        databaseAccounts = new DatabaseAccounts(this);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -52,6 +57,7 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
         //declareer variabelen
         //declareer functies
         naamFun();
+        tweedeNaamFun();
     }
 
     @Override
@@ -101,8 +107,6 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
         return true;
     }
     public void naamFun(){
-        View headerView = navigationView.getHeaderView(0);
-        TextView textView1NavHeader = headerView.findViewById(R.id.TextView1NavHeader);
         textView1NavHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,5 +115,10 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
+    }
+    public void tweedeNaamFun(){
+        if (databaseAccounts.erIsAlDatas()){
+            textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+        }
     }
 }

@@ -35,14 +35,13 @@ public class ActivityCheckWeight extends AppCompatActivity implements Navigation
 
     //variabelen
     ListView listView;
-
     DatabaseWeight databaseWeight;
-
     ArrayList<String> weights;
-
     Button addweightCheckWeightButtonJavaClass;
-
     TextView infoLaatsteGewicht;
+    TextView textView1NavHeader;
+    View headerView;
+    DatabaseAccounts databaseAccounts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,19 +62,19 @@ public class ActivityCheckWeight extends AppCompatActivity implements Navigation
 
         //declaratie van de variabelen
         databaseWeight = new DatabaseWeight(this);
-
         listView = findViewById(R.id.listViewCheckWeightListViewContent);
-
         weights = new ArrayList<>();
-
         addweightCheckWeightButtonJavaClass = findViewById(R.id.addweightCheckWeightButtonContent);
-
         infoLaatsteGewicht = findViewById(R.id.infoInfoCheckWeightTextviewContent);
+        headerView = navigationView.getHeaderView(0);
+        textView1NavHeader = (TextView) headerView.findViewById(R.id.TextView1NavHeader);
+        databaseAccounts = new DatabaseAccounts(this);
         //declarisatie van de functies
         updateListView();
         buttonClick();
         updateTextView();
         naamFun();
+        tweedeNaamFun();
 
     }
 
@@ -155,5 +154,10 @@ public class ActivityCheckWeight extends AppCompatActivity implements Navigation
                 startActivity(intent);
             }
         });
+    }
+    public void tweedeNaamFun(){
+        if (databaseAccounts.erIsAlDatas()){
+            textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+        }
     }
 }

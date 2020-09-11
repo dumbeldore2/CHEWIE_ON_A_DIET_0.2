@@ -10,7 +10,13 @@ import android.widget.TextView;
 public class ActivitySettings extends AppCompatActivity {
 
     //variabelen
-    TextView settings,inloggen,registreren,back;
+    TextView settings;
+    TextView inloggen;
+    TextView registreren;
+    TextView back;
+    DatabaseAccounts databaseAccounts;
+    TextView emailAccountTextViewActivitySettingContent;
+    TextView naamAccountTextViewActivitySettingContent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,11 +27,16 @@ public class ActivitySettings extends AppCompatActivity {
         inloggen = findViewById(R.id.ActivitySettingsinloggenTextViewContent);
         registreren = findViewById(R.id.ActivitySettingsregistrerenTextViewContent);
         back = findViewById(R.id.ActivitySettingsBackTextViewContent);
+        databaseAccounts = new DatabaseAccounts(this);
+        emailAccountTextViewActivitySettingContent = findViewById(R.id.emailAccountTextViewActivitySettingContent);
+        naamAccountTextViewActivitySettingContent = findViewById(R.id.naamAccountTextViewActivitySettingContent);
+
         //initialisatie van de functies
         settingsfun();
         inloggenfun();
         registrerenfun();
         backfun();
+        veranderenInfoFun();
     }
 
     //hier komt de code
@@ -65,5 +76,10 @@ public class ActivitySettings extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    public void veranderenInfoFun(){
+        if (databaseAccounts.erIsAlDatas()){
+            naamAccountTextViewActivitySettingContent.setText(databaseAccounts.getLaatsteUsername());
+        }
     }
 }

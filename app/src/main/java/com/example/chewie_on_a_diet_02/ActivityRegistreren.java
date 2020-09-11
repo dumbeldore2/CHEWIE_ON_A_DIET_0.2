@@ -34,18 +34,18 @@ public class ActivityRegistreren extends AppCompatActivity {
 
     //de fucnties
     public String getUsername(){
-        if (username.toString().trim().isEmpty() || username == null)throw new IllegalArgumentException();
-        return username.toString().trim();
+        if (username.getText().toString().trim().isEmpty() || username == null)throw new IllegalArgumentException();
+        return username.getText().toString();
     }
 
     public String getPassword(){
-        if (password.toString().trim().isEmpty() || password == null)throw new IllegalArgumentException();
-        return password.toString().trim();
+        if (password.getText().toString().trim().isEmpty() || password == null)throw new IllegalArgumentException();
+        return password.getText().toString();
     }
 
     public String getEmail(){
-        if (emailadress.toString().trim().isEmpty() || emailadress == null)throw new IllegalArgumentException();
-        return emailadress.toString().trim();
+        if (emailadress.getText().toString().trim().isEmpty() || emailadress == null)throw new IllegalArgumentException();
+        return emailadress.getText().toString();
     }
     public void addfun(){
         add.setOnClickListener(new View.OnClickListener() {

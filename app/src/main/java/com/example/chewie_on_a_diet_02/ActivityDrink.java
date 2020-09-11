@@ -36,6 +36,9 @@ ActivityDrink extends AppCompatActivity implements NavigationView.OnNavigationIt
     DatabaseDrink databaseDrink;
     ArrayList<String>drinks;
     Button addDrinkDrinkButtonJavaClass;
+    TextView textView1NavHeader;
+    View headerView;
+    DatabaseAccounts databaseAccounts;
 
 
     @Override
@@ -62,12 +65,16 @@ ActivityDrink extends AppCompatActivity implements NavigationView.OnNavigationIt
         databaseDrink = new DatabaseDrink(this);
         drinks = new ArrayList<>();
         addDrinkDrinkButtonJavaClass = findViewById(R.id.addDrinkDrinkButtonContent);
+        headerView = navigationView.getHeaderView(0);
+        textView1NavHeader = (TextView) headerView.findViewById(R.id.TextView1NavHeader);
+        databaseAccounts = new DatabaseAccounts(this);
 
         //Declaratie van de functies
 
         updateListView();
         addButtonFun();
         naamFun();
+        tweedeNaamFun();
 
     }
 
@@ -145,5 +152,11 @@ ActivityDrink extends AppCompatActivity implements NavigationView.OnNavigationIt
                 startActivity(intent);
             }
         });
+    }
+
+    public void tweedeNaamFun(){
+        if (databaseAccounts.erIsAlDatas()){
+            textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+        }
     }
 }

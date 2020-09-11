@@ -8,12 +8,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 class DatabaseAccounts extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "databaseaccounts.db";
-    public static final String DATABASE_TABLE = "dc";
+    public static final String DATABASE_TABLE = "da";
     public static final String COL_1 = "id";
-    public static final String COL_2 = "usernaam";
+    public static final String COL_2 = "username";
     public static final String COL_3 = "password";
     public static final String COL_4 = "emailadres";
 
@@ -35,7 +39,7 @@ class DatabaseAccounts extends SQLiteOpenHelper {
     public int IDMAKER() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from dc", null
+                "select * from da", null
         );
         return cursor.getCount();
     }
@@ -54,5 +58,24 @@ class DatabaseAccounts extends SQLiteOpenHelper {
         contentValues.put(COL_4, emailadress);
 
         sqLiteDatabase.insert(DATABASE_TABLE,null,contentValues);
+    }
+    public boolean erIsAlDatas(){
+        Boolean uit = false;
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from da",null);
+        if (cursor.getCount() > 0){
+            uit = true;
+        }
+        return uit;
+    }
+
+    public String getLaatsteUsername(){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        Cursor cursor = sqLiteDatabase.rawQuery("select username from da order by id desc limit 1",null);
+        if (cursor.moveToFirst()){
+            stringBuffer.append(cursor.getString(0));
+        }
+        return stringBuffer.toString();
     }
 }

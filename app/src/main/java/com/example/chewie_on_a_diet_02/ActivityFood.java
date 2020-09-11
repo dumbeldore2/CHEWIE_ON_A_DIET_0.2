@@ -34,6 +34,9 @@ public class ActivityFood extends AppCompatActivity  implements NavigationView.O
     DatabaseFood databaseFood;
     ArrayList<String>foods;
     Button addFoodFoodButtonJavaClass;
+    TextView textView1NavHeader;
+    View headerView;
+    DatabaseAccounts databaseAccounts;
 
 
     @Override
@@ -57,17 +60,18 @@ public class ActivityFood extends AppCompatActivity  implements NavigationView.O
 
         //declarisatie van de variabelen
         listViewFoodListViewJavaClass = findViewById(R.id.listViewFoodListViewContent);
-
         databaseFood = new DatabaseFood(this);
-
         foods = new ArrayList<>();
-
         addFoodFoodButtonJavaClass = findViewById(R.id.addFoodFoodButtonContent);
+        headerView = navigationView.getHeaderView(0);
+        textView1NavHeader = (TextView) headerView.findViewById(R.id.TextView1NavHeader);
+        databaseAccounts = new DatabaseAccounts(this);
 
         //declarisatie van functies
         updateListView();
         addButtonFun();
         naamFun();
+        tweedeNaamFun();
     }
 
     @Override
@@ -141,5 +145,10 @@ public class ActivityFood extends AppCompatActivity  implements NavigationView.O
                 startActivity(intent);
             }
         });
+    }
+    public void tweedeNaamFun(){
+        if (databaseAccounts.erIsAlDatas()){
+            textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+        }
     }
 }

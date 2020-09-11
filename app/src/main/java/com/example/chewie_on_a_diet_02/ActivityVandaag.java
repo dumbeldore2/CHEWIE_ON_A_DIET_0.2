@@ -37,17 +37,16 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
     DatabaseDagEnCalorien databaseDagEnCalorien;
     DatabaseFull databaseFull;
     DatabaseActivity databaseActivity;
-
     Button addFoodVandaagButtonJavaClass;
-
     TextView eigenCalorienVandaagTextViewJavaClass;
     TextView gemCalorienPerDagVandaagTextviewJavaClass;
-
     ListView listViewVandaagListViewJavaClass;
     ListView listViewTweeVandaagListViewJavaClass;
-
     ArrayList<String>today;
     ArrayList<String>todayActivity;
+    TextView textView1NavHeader;
+    View headerView;
+    DatabaseAccounts databaseAccounts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,19 +72,16 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
         databaseDagEnCalorien = new DatabaseDagEnCalorien(this);
         databaseFull = new DatabaseFull(this);
         databaseActivity = new DatabaseActivity(this);
-
         addFoodVandaagButtonJavaClass = findViewById(R.id.addFoodVandaagButtonContent);
-
-        eigenCalorienVandaagTextViewJavaClass =
-                findViewById(R.id.eigenCalorienVandaagTextViewContent);
-        gemCalorienPerDagVandaagTextviewJavaClass =
-                findViewById(R.id.gemCalorienPerDagVandaagTextviewContent);
-
+        eigenCalorienVandaagTextViewJavaClass = findViewById(R.id.eigenCalorienVandaagTextViewContent);
+        gemCalorienPerDagVandaagTextviewJavaClass = findViewById(R.id.gemCalorienPerDagVandaagTextviewContent);
         listViewVandaagListViewJavaClass = findViewById(R.id.liSTviewVandaagListViewContent);
         listViewTweeVandaagListViewJavaClass = findViewById(R.id.liSTviewtweedeVandaagListViewContent);
-
         today = new ArrayList<>();
         todayActivity = new ArrayList<>();
+        headerView = navigationView.getHeaderView(0);
+        textView1NavHeader = (TextView) headerView.findViewById(R.id.TextView1NavHeader);
+        databaseAccounts = new DatabaseAccounts(this);
 
         //initalisatie van de functies
         vulDBin();
@@ -95,7 +91,7 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
         updateListView();
         updateListViewtwee();
         naamFun();
-
+        tweedeNaamFun();
 
 
     }
@@ -203,8 +199,6 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
         }
     }
     public void naamFun(){
-        View headerView = navigationView.getHeaderView(0);
-        TextView textView1NavHeader = (TextView) headerView.findViewById(R.id.TextView1NavHeader);
         textView1NavHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,5 +206,11 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
                 startActivity(intent);
             }
         });
+    }
+
+    public void tweedeNaamFun(){
+        if (databaseAccounts.erIsAlDatas()){
+            textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+        }
     }
 }
