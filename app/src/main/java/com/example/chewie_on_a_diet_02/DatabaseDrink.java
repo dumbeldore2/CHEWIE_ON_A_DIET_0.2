@@ -37,7 +37,7 @@ public class DatabaseDrink extends SQLiteOpenHelper {
     public  int IDMAKER(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from drink",null
+                "select * from databasedrink",null
         );
         return cursor.getCount();
     }
@@ -59,7 +59,7 @@ public class DatabaseDrink extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from drink where id =="+idN+"", null);
+                "select * from databasedrink where id =="+idN+"", null);
         if (cursor.moveToFirst()){
             stringBuffer.append(cursor.getString(1));
             stringBuffer.append("  ||  ");
@@ -84,7 +84,7 @@ public class DatabaseDrink extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select naam from drink where id ==" + i, null);
+                "select naam from databasedrink where id ==" + i, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
@@ -94,7 +94,7 @@ public class DatabaseDrink extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select merk from drink where id ==" + i, null);
+                "select merk from databasedrink where id ==" + i, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
@@ -104,7 +104,7 @@ public class DatabaseDrink extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select groote from drink where id ==" + i, null);
+                "select groote from databasedrink where id ==" + i, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
@@ -114,7 +114,7 @@ public class DatabaseDrink extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select calorien from drink where id ==" + i, null);
+                "select calorien from databasedrink where id ==" + i, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }

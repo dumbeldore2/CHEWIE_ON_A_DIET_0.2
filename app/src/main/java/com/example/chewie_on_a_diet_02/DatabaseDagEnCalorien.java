@@ -38,7 +38,7 @@ public class DatabaseDagEnCalorien extends SQLiteOpenHelper {
     public int IDMAKER() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from dc", null
+                "select * from databasedagencalorien", null
         );
         return cursor.getCount();
     }
@@ -67,7 +67,7 @@ public class DatabaseDagEnCalorien extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select id from dc where datum ==" + "'" +deDatum + "'", null);
+                "select id from databasedagencalorien where datum ==" + "'" +deDatum + "'", null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
@@ -82,7 +82,7 @@ public class DatabaseDagEnCalorien extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select aantalcalorien from dc where datum ==" + "'" + deDatum + "'", null);
+                "select aantalcalorien from databasedagencalorien where datum ==" + "'" + deDatum + "'", null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
@@ -107,7 +107,7 @@ public class DatabaseDagEnCalorien extends SQLiteOpenHelper {
         boolean leeg = false;
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from dc where datum == " + "'"+dedatum+"'", null);
+                "select * from databasedagencalorien where datum == " + "'"+dedatum+"'", null);
         if (cursor.getCount() == 0) {
             leeg = true;
         }
@@ -117,7 +117,7 @@ public class DatabaseDagEnCalorien extends SQLiteOpenHelper {
         Boolean uit = false;
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from dc",null);
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from databasedagencalorien",null);
         if (cursor.getCount() > 0){
             uit = true;
         }

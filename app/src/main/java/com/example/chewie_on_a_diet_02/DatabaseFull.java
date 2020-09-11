@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class DatabaseFull extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "databasefull.db";
-    public static final String DATABASE_TABLE = "dbfull";
+    public static final String DATABASE_TABLE = "databasefull";
     public static final String COL_1 = "id";
     public static final String COL_2 = "naam";
     public static final String COL_3 = "merk";
@@ -42,7 +42,7 @@ public class DatabaseFull extends SQLiteOpenHelper {
     public  int IDMAKER(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from dbfull",null
+                "select * from databasefull",null
         );
         return cursor.getCount();
     }
@@ -71,7 +71,7 @@ public class DatabaseFull extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from dbfull where datum ==" + "'" + deDatum + "'",null
+                "select * from databasefull where datum ==" + "'" + deDatum + "'",null
         );
         return cursor.getCount();
     }
@@ -83,7 +83,7 @@ public class DatabaseFull extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from dbfull where datum =="+"'"+deDatum+"'",null);
+                "select * from databasefull where datum =="+"'"+deDatum+"'",null);
         if (cursor.moveToPosition(i)){
             stringBuffer.append(cursor.getString(0));
         }
@@ -105,7 +105,7 @@ public class DatabaseFull extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from dbfull where id =="+idN+" and datum ==" + "'" + deDatum + "'", null);
+                "select * from databasefull where id =="+idN+" and datum ==" + "'" + deDatum + "'", null);
         if(cursor.moveToPosition(0)){
             stringBuffer.append(cursor.getString(1));
             stringBuffer.append("  ||  ");
@@ -139,7 +139,7 @@ public class DatabaseFull extends SQLiteOpenHelper {
 
         if (erZijnAlDatas()){
             Cursor cursor = sqLiteDatabase.rawQuery(
-                    "select sum(calorien) from dbfull where datum ==" + "'" + deDatum + "'",null);
+                    "select sum(calorien) from databasefull where datum ==" + "'" + deDatum + "'",null);
             if (cursor.moveToFirst()){
                 stringBuffer.append(cursor.getString(0));
             }
@@ -154,12 +154,11 @@ public class DatabaseFull extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from dbfull where datum ==" + "'" + deDatum +
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from databasefull where datum ==" + "'" + deDatum +
                 "'",null);
         if (cursor.getCount() > 0){
             uit = true;
         }
         return uit;
     }
-
 }

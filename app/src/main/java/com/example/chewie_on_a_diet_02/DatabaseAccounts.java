@@ -15,7 +15,7 @@ import java.util.Date;
 class DatabaseAccounts extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "databaseaccounts.db";
-    public static final String DATABASE_TABLE = "da";
+    public static final String DATABASE_TABLE = "databaseaccounts";
     public static final String COL_1 = "id";
     public static final String COL_2 = "username";
     public static final String COL_3 = "password";
@@ -39,7 +39,7 @@ class DatabaseAccounts extends SQLiteOpenHelper {
     public int IDMAKER() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from da", null
+                "select * from databaseaccounts", null
         );
         return cursor.getCount();
     }
@@ -62,7 +62,7 @@ class DatabaseAccounts extends SQLiteOpenHelper {
     public boolean erIsAlDatas(){
         Boolean uit = false;
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from da",null);
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from databaseaccounts",null);
         if (cursor.getCount() > 0){
             uit = true;
         }
@@ -72,7 +72,7 @@ class DatabaseAccounts extends SQLiteOpenHelper {
     public String getLaatsteUsername(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
-        Cursor cursor = sqLiteDatabase.rawQuery("select username from da order by id desc limit 1",null);
+        Cursor cursor = sqLiteDatabase.rawQuery("select username from databaseaccounts order by id desc limit 1",null);
         if (cursor.moveToFirst()){
             stringBuffer.append(cursor.getString(0));
         }

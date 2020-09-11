@@ -16,7 +16,7 @@ import java.util.Date;
 public class DatabaseActivity extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "databaseactivity.db";
-    public static final String DATABASE_TABLE = "da";
+    public static final String DATABASE_TABLE = "databaseactivity";
     public static final String COL_1 = "id";
     public static final String COL_2 = "datum";
     public static final String COL_3 = "duur";
@@ -41,7 +41,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
     public int IDMAKER() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from da", null
+                "select * from databaseactivity", null
         );
         return cursor.getCount();
     }
@@ -73,7 +73,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from da where datum ==" + "'" + deDatum +
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from databaseactivity where datum ==" + "'" + deDatum +
                 "'",null);
         if (cursor.getCount() > 0){
             uit = true;
@@ -94,7 +94,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from da where id =="+idN+"", null);
+                "select * from databaseactivity where id =="+idN+"", null);
         if (cursor.moveToPosition(0)){
             stringBuffer.append(cursor.getString(1));
             stringBuffer.append("  ||  ");
@@ -114,7 +114,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from da where datum ==" + "'" + deDatum + "'",null
+                "select * from databaseactivity where datum ==" + "'" + deDatum + "'",null
         );
         return cursor.getCount();
     }
@@ -126,7 +126,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from da where datum =="+"'"+deDatum+"'",null);
+                "select * from databaseactivity where datum =="+"'"+deDatum+"'",null);
         if (cursor.moveToPosition(i)){
             stringBuffer.append(cursor.getString(0));
         }
@@ -148,7 +148,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from da where id =="+idN+" and datum ==" + "'" + deDatum + "'", null);
+                "select * from databaseactivity where id =="+idN+" and datum ==" + "'" + deDatum + "'", null);
         if(cursor.moveToPosition(0)){
             stringBuffer.append(cursor.getString(1));
             stringBuffer.append("  ||  ");
