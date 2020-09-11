@@ -1,0 +1,14 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory app:title="Account">
+        <EditTextPreference
+            app:key="username"
+            app:title="username"
+            app:useSimpleSummaryProvider="true"
+            app:summary="username"/>
+        <EditTextPreference
+            app:key="email"
+            app:useSimpleSummaryProvider="true"
+            app:title="email"
+            app:summary="android.lol@gmail.com"/>
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.chewie_on_a_diet_02">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ActivitySettingsFinal"
+            android:label="@string/title_activity_settings_final"></activity>
+        <activity android:name=".ActivitySettings" />
+        <activity android:name=".ActivityRegistreren" />
+        <activity android:name=".ActivityLogin" />
+        <activity
+            android:name=".ActivityFoodOrDrink"
+            android:label="@string/title_activity_food_or_drink"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityFormat"
+            android:label="@string/title_activity_format"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityFoodOrActivity"
+            android:label="@string/title_activity_food_or"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityActivity"
+            android:label="@string/title_activity_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityAddActivity"
+            android:label="@string/title_activity_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityCheckWeight"
+            android:label="@string/title_activity_check_weight"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityAddWeight"
+            android:label="@string/title_activity_add_weight"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityAddFoodToVandaag"
+            android:label="@string/title_activity_add_food_to_vandaag"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityDrink"
+            android:label="@string/title_activity_drink"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityAddDrink"
+            android:label="@string/title_activity_add_drink"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityAddFood"
+            android:label="@string/title_activity_add_food"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityFood"
+            android:label="@string/title_activity_food"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityVandaag"
+            android:label="@string/title_activity_vandaag"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityMain"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

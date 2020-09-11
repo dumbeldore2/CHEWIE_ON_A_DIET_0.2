@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">CHEWIE_ON_A_DIET_0.2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="title_activity_vandaag">Vandaag</string>
+    <string name="title_activity_kalender">Kalender</string>
+    <string name="title_activity_food">food</string>
+    <string name="title_activity_add_food">AddFood</string>
+    <string name="title_activity_add_drink">AddDrink</string>
+    <string name="title_activity_max_calorien_per_dag">ActivityMaxCalorienPerDag</string>
+    <string name="title_activity_drink">ActivityDrink</string>
+    <string name="title_activity_add_to_vandaag">ActivityAddToVandaag</string>
+    <string name="title_activity_add_food_to_vandaag">ActivityAddFoodToVandaag</string>
+    <string name="title_activity_add_weight">ActivityAddWeight</string>
+    <string name="title_activity_check_weight">ActivityCheckWeight</string>
+    <string name="title_activity_activity">ActivityActivity</string>
+    <string name="title_activity_food_or">ActivityFoodOrActivity</string>
+    <string name="title_activity_format">ActivityFormat</string>
+    <string name="title_activity_food_or_drink">ActivityFoodOrDrink</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_settings_final">ActivitySettingsFinal</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+</resources>

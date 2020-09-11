@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_vandaag"
+            android:title="Vandaag"/>
+        <item
+            android:id="@+id/nav_food"
+            android:title="Food"/>
+        <item
+            android:id="@+id/nav_drink"
+            android:title="Drink"/>
+        <item
+            android:id="@+id/nav_check_weight"
+            android:title="Weight"/>
+        <item
+            android:id="@+id/nav_activity"
+            android:title="Activity"/>
+    </group>
+
+</menu>

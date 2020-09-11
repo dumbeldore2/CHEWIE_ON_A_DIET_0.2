@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/app_bar_main">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/eigenCalorienVandaagTextViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="30dp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/gemCalorienPerDagVandaagTextviewContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="30dp"
+            android:gravity="center"/>
+        <Button
+            android:id="@+id/addFoodVandaagButtonContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="add"
+            android:textSize="20dp"
+            android:gravity="center"/>
+        <ListView
+            android:id="@+id/liSTviewVandaagListViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+        <TextView
+            android:id="@+id/infoOverTweedeListViewVandaagTextViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="activitys"
+            android:textSize="30dp"
+            android:gravity="center"/>
+        <ListView
+            android:id="@+id/liSTviewtweedeVandaagListViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

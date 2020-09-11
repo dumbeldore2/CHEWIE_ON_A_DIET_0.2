@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/app_bar_main">
+
+    <EditText
+        android:id="@+id/naamAddDrinkEditTextContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text"
+        android:hint="naam"
+        android:textSize="50dp"
+        android:gravity="center"/>
+    <EditText
+        android:id="@+id/merkAddDrinkEditTextContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/naamAddDrinkEditTextContent"
+        android:inputType="text"
+        android:hint="merk"
+        android:textSize="50dp"
+        android:gravity="center"/>
+    <EditText
+        android:id="@+id/calorienAddDrinkEditTextContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/merkAddDrinkEditTextContent"
+        android:inputType="text"
+        android:hint="calorien per 100cl"
+        android:textSize="50dp"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/addAddDrinkButtonContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calorienAddDrinkEditTextContent"
+        android:text="@string/title_activity_add_drink"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/app_bar_main">
+
+
+    <EditText
+        android:id="@+id/duurActivityEditTextContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text"
+        android:hint="duur"
+        android:textSize="50dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/aantalCalActivityEditTextContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/duurActivityEditTextContent"
+        android:inputType="text"
+        android:hint="aantal cal"
+        android:textSize="50dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/extraInfoActivityEditTextContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/aantalCalActivityEditTextContent"
+        android:inputType="text"
+        android:hint="extra info"
+        android:textSize="50dp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/addActivityButtonContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/extraInfoActivityEditTextContent"
+        android:text="add"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
