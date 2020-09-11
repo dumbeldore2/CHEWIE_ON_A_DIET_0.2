@@ -80,6 +80,7 @@ public class ActivitySettings extends AppCompatActivity {
     public void veranderenInfoFun(){
         if (databaseAccounts.erIsAlDatas()){
             naamAccountTextViewActivitySettingContent.setText(databaseAccounts.getLaatsteUsername());
+            emailAccountTextViewActivitySettingContent.setText(databaseAccounts.getLaatstemail());
         }
     }
 }
