@@ -47,6 +47,7 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
     TextView textView1NavHeader;
     View headerView;
     DatabaseAccounts databaseAccounts;
+    TextView textView2NavHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,8 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
         headerView = navigationView.getHeaderView(0);
         textView1NavHeader = (TextView) headerView.findViewById(R.id.TextView1NavHeader);
         databaseAccounts = new DatabaseAccounts(this);
+        textView2NavHeader = headerView.findViewById(R.id.TextView2NavHeader);
+
 
         //initalisatie van de functies
         vulDBin();
@@ -211,6 +214,7 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
     public void tweedeNaamFun(){
         if (databaseAccounts.erIsAlDatas()){
             textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+            textView2NavHeader.setText(databaseAccounts.getLaatstemail());
         }
     }
 }

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -41,10 +42,8 @@ public class ActivityAddFoodToVandaag extends AppCompatActivity {
         databaseDrink = new DatabaseDrink(this);
         databaseFull = new DatabaseFull(this);
         databaseDagEnCalorien = new DatabaseDagEnCalorien(this);
-        listViewFoodAddToVandaagListViewContent =
-                findViewById(R.id.listViewFoodAddToVandaagListViewContent);
-        listViewDrinkAddToVandaagListViewContent =
-                findViewById(R.id.listViewDrinkAddToVandaagListViewContent);
+        listViewFoodAddToVandaagListViewContent = findViewById(R.id.listViewFoodAddToVandaagListViewContent);
+        listViewDrinkAddToVandaagListViewContent = findViewById(R.id.listViewDrinkAddToVandaagListViewContent);
         foods = new ArrayList<>();
         drinks = new ArrayList<>();
         addNewObject = findViewById(R.id.AddNewObject);

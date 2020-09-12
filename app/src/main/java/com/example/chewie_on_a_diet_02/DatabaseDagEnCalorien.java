@@ -15,7 +15,7 @@ import java.util.Date;
 
 public class DatabaseDagEnCalorien extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "databasedagencalorien.db";
-    public static final String DATABASE_TABLE = "dc";
+    public static final String DATABASE_TABLE = "databasedagencalorien";
     public static final String COL_1 = "id";
     public static final String COL_2 = "datum";
     public static final String COL_3 = "aantalcalorien";
@@ -130,8 +130,8 @@ public class DatabaseDagEnCalorien extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         if (erZijnAlDatas()){
-            Cursor cursor = sqLiteDatabase.rawQuery("select sum(aantalcalorien) from dc order by id desc limit 7",null);
-            Cursor cursor1 = sqLiteDatabase.rawQuery("select aantalcalorien from dc order by id " +
+            Cursor cursor = sqLiteDatabase.rawQuery("select sum(aantalcalorien) from databasedagencalorien order by id desc limit 7",null);
+            Cursor cursor1 = sqLiteDatabase.rawQuery("select aantalcalorien from databasedagencalorien order by id " +
                     "desc limit 7",null);
 
             if (cursor.moveToFirst()){

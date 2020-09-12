@@ -37,6 +37,7 @@ public class ActivityFood extends AppCompatActivity  implements NavigationView.O
     TextView textView1NavHeader;
     View headerView;
     DatabaseAccounts databaseAccounts;
+    TextView textView2NavHeader;
 
 
     @Override
@@ -66,6 +67,7 @@ public class ActivityFood extends AppCompatActivity  implements NavigationView.O
         headerView = navigationView.getHeaderView(0);
         textView1NavHeader = (TextView) headerView.findViewById(R.id.TextView1NavHeader);
         databaseAccounts = new DatabaseAccounts(this);
+        textView2NavHeader = headerView.findViewById(R.id.TextView2NavHeader);
 
         //declarisatie van functies
         updateListView();
@@ -149,6 +151,7 @@ public class ActivityFood extends AppCompatActivity  implements NavigationView.O
     public void tweedeNaamFun(){
         if (databaseAccounts.erIsAlDatas()){
             textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+            textView2NavHeader.setText(databaseAccounts.getLaatstemail());
         }
     }
 }

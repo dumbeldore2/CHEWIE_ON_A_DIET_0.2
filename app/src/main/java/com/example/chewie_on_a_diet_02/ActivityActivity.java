@@ -47,6 +47,7 @@ public class ActivityActivity extends AppCompatActivity implements NavigationVie
     DatabaseAccounts databaseAccounts;
     ArrayList activitys;
     View headerView;
+    TextView textView2NavHeader;
 
 
     @Override
@@ -76,6 +77,8 @@ public class ActivityActivity extends AppCompatActivity implements NavigationVie
         activitys = new ArrayList();
         headerView = navigationView.getHeaderView(0);
         textView1NavHeader = headerView.findViewById(R.id.TextView1NavHeader);
+        textView2NavHeader = headerView.findViewById(R.id.TextView2NavHeader);
+
 
         //initialisatie van de functies
         updateListView();
@@ -150,6 +153,7 @@ public class ActivityActivity extends AppCompatActivity implements NavigationVie
     public void tweedeNaamFun(){
         if (databaseAccounts.erIsAlDatas()){
             textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+            textView2NavHeader.setText(databaseAccounts.getLaatstemail());
         }
     }
 

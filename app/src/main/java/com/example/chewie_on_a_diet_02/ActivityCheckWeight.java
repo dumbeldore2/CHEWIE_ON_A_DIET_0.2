@@ -42,6 +42,7 @@ public class ActivityCheckWeight extends AppCompatActivity implements Navigation
     TextView textView1NavHeader;
     View headerView;
     DatabaseAccounts databaseAccounts;
+    TextView textView2NavHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,8 @@ public class ActivityCheckWeight extends AppCompatActivity implements Navigation
         headerView = navigationView.getHeaderView(0);
         textView1NavHeader = (TextView) headerView.findViewById(R.id.TextView1NavHeader);
         databaseAccounts = new DatabaseAccounts(this);
+        textView2NavHeader = headerView.findViewById(R.id.TextView2NavHeader);
+
         //declarisatie van de functies
         updateListView();
         buttonClick();
@@ -158,6 +161,7 @@ public class ActivityCheckWeight extends AppCompatActivity implements Navigation
     public void tweedeNaamFun(){
         if (databaseAccounts.erIsAlDatas()){
             textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+            textView2NavHeader.setText(databaseAccounts.getLaatstemail());
         }
     }
 }

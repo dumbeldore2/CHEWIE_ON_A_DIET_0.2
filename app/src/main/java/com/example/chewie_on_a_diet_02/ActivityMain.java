@@ -29,6 +29,7 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
     View headerView;
     TextView textView1NavHeader;
     DatabaseAccounts databaseAccounts;
+    TextView textView2NavHeader;
     //variabelen
 
     @Override
@@ -43,6 +44,8 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
         headerView = navigationView.getHeaderView(0);
         textView1NavHeader = headerView.findViewById(R.id.TextView1NavHeader);
         databaseAccounts = new DatabaseAccounts(this);
+        textView2NavHeader = headerView.findViewById(R.id.TextView2NavHeader);
+
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -119,6 +122,7 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
     public void tweedeNaamFun(){
         if (databaseAccounts.erIsAlDatas()){
             textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+            textView2NavHeader.setText(databaseAccounts.getLaatstemail());
         }
     }
 }

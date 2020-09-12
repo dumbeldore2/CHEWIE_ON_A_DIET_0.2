@@ -39,6 +39,7 @@ ActivityDrink extends AppCompatActivity implements NavigationView.OnNavigationIt
     TextView textView1NavHeader;
     View headerView;
     DatabaseAccounts databaseAccounts;
+    TextView textView2NavHeader;
 
 
     @Override
@@ -68,6 +69,7 @@ ActivityDrink extends AppCompatActivity implements NavigationView.OnNavigationIt
         headerView = navigationView.getHeaderView(0);
         textView1NavHeader = (TextView) headerView.findViewById(R.id.TextView1NavHeader);
         databaseAccounts = new DatabaseAccounts(this);
+        textView2NavHeader = headerView.findViewById(R.id.TextView2NavHeader);
 
         //Declaratie van de functies
 
@@ -157,6 +159,7 @@ ActivityDrink extends AppCompatActivity implements NavigationView.OnNavigationIt
     public void tweedeNaamFun(){
         if (databaseAccounts.erIsAlDatas()){
             textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
+            textView2NavHeader.setText(databaseAccounts.getLaatstemail());
         }
     }
 }

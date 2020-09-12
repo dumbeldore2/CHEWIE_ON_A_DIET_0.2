@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class DatabaseDrink extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "databasedrink.db";
-    public static final String DATABASE_TABLE = "drink";
+    public static final String DATABASE_TABLE = "databasedrink";
     public static final String COL_1 = "id";
     public static final String COL_2 = "naam";
     public static final String COL_3 = "merk";
