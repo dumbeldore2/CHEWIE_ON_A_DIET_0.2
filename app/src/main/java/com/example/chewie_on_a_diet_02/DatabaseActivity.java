@@ -22,6 +22,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
     public static final String COL_3 = "duur";
     public static final String COL_4 = "aantalcalorien";
     public static final String COL_5 = "extra";
+    public static final String COL_6 = "idaccount";
 
     public DatabaseActivity(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -30,7 +31,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + DATABASE_TABLE + "(id INTEGER primary key, datum text , duur" +
-                " INTEGER, aantalcalorien INTEGER, extra text)");
+                " INTEGER, aantalcalorien INTEGER, extra text, idaccount INTEGER)");
     }
 
     @Override
