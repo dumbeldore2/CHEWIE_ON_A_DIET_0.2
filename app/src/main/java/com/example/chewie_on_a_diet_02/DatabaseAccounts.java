@@ -87,4 +87,13 @@ class DatabaseAccounts extends SQLiteOpenHelper {
         }
         return stringBuffer.toString();
     }
+    public String getLaatsteId(){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        Cursor cursor = sqLiteDatabase.rawQuery("select id from databaseaccounts order by id desc limit 1",null);
+        if (cursor.moveToFirst()){
+            stringBuffer.append(cursor.getString(0));
+        }
+        return stringBuffer.toString();
+    }
 }
