@@ -22,6 +22,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class ActivityMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -61,6 +65,7 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
         //declareer functies
         naamFun();
         tweedeNaamFun();
+        vulDBin();
     }
 
     @Override
@@ -123,6 +128,11 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
         if (databaseAccounts.erIsAlDatas()){
             textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
             textView2NavHeader.setText(databaseAccounts.getLaatstemail());
+        }
+    }
+    public void vulDBin() {
+        if (!databaseAccounts.erIsAlDatas()) {
+            databaseAccounts.insertData("android","android","android@gmail.com");
         }
     }
 }

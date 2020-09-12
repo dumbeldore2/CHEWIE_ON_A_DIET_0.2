@@ -148,8 +148,8 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
         Date calendar = Calendar.getInstance().getTime();
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
-        if (databaseDagEnCalorien.ErIsNogNiksVanDieDatum(deDatum)) {
-            databaseDagEnCalorien.insertDagObject();
+        if (databaseDagEnCalorien.ErIsNogNiksVanDieDatum(deDatum,databaseAccounts.getLaatsteId())) {
+            databaseDagEnCalorien.insertDagObject(databaseAccounts.getLaatsteId());
         }
     }
 
@@ -169,8 +169,8 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
 
         if (databaseFull.erZijnAlDatas()){
 
-            databaseDagEnCalorien.updateDatabase(databaseFull.berekenDagelijkseCal(deDatum));
-            eigenCalorienVandaagTextViewJavaClass.setText("today : " + databaseDagEnCalorien.getCalHuidig());
+            databaseDagEnCalorien.updateDatabase(databaseFull.berekenDagelijkseCal(deDatum),databaseAccounts.getLaatsteId());
+            eigenCalorienVandaagTextViewJavaClass.setText("today : " + databaseDagEnCalorien.getCalHuidig(databaseAccounts.getLaatsteId()));
 
         } else {
             if (!databaseFull.erZijnAlDatas()){
@@ -180,9 +180,9 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
     }
 
     public void upDateTextViewGemAaantalCalorienLaatsteZevenDagen(){
-        if (databaseDagEnCalorien.erZijnAlDatas()){
+        if (databaseDagEnCalorien.erZijnAlDatas(databaseAccounts.getLaatsteId())){
             String uitkomst = "";
-            uitkomst += databaseDagEnCalorien.berekenGemiddeldefinal();
+            uitkomst += databaseDagEnCalorien.berekenGemiddeldefinal(databaseAccounts.getLaatsteId());
             gemCalorienPerDagVandaagTextviewJavaClass.setText("gem last 7 : " +uitkomst + " cal");
         }
     }
