@@ -59,7 +59,7 @@ public class ActivityAddFoodToVandaag extends AppCompatActivity {
 
     //functies
     public void updateListViews(){
-        foods = databaseFood.info();
+        foods = databaseFood.info(databaseAccounts.getLaatsteId());
         drinks = databaseDrink.info(databaseAccounts.getLaatsteId());
 
         ArrayAdapter arrayAdapterfood = new ArrayAdapter(this,android.R.layout.simple_list_item_1
@@ -84,7 +84,7 @@ public class ActivityAddFoodToVandaag extends AppCompatActivity {
 
                         ArrayList<String>objects;
                         objects = new ArrayList<>();
-                        objects = databaseFood.get(i);
+                        objects = databaseFood.get(i,databaseAccounts.getLaatsteId());
 
                         Intent intent = new Intent(getApplicationContext(),
                                 ActivityFormat.class);

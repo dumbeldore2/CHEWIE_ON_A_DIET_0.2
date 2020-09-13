@@ -34,6 +34,7 @@ public class ActivityAddFood extends AppCompatActivity{
     Button addAddFoodButtonJavaClass;
     DatabaseFood databaseFood;
     int order;
+    DatabaseAccounts databaseAccounts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +47,11 @@ public class ActivityAddFood extends AppCompatActivity{
         naamAddFoodEditTextJavaClass  = findViewById(R.id.naamAddFoodEditTextContent);
         merkAddFoodEditTextJavaClass  = findViewById(R.id.merkAddFoodEditTextContent);
         calorienAddFoodEditTextJavaClass  = findViewById(R.id.calorienAddFoodEditTextContent);
-
         addAddFoodButtonJavaClass  = findViewById(R.id.addAddFoodButtonContent);
-
         databaseFood = new DatabaseFood(this);
-
         Intent intent = getIntent();
         order = intent.getIntExtra("order",-1);
-        System.out.println(order);
+        databaseAccounts = new DatabaseAccounts(this);
         //functies
         addFoodToDataBaseFinal();
     }
@@ -67,7 +65,7 @@ public class ActivityAddFood extends AppCompatActivity{
                                 merkAddFoodEditTextJavaClass.getText().toString(),100,
                                 Integer.parseInt(calorienAddFoodEditTextJavaClass.getText().toString()));
                         if (foodObject != null){
-                            databaseFood.insertFoodObject(foodObject);
+                            databaseFood.insertFoodObject(foodObject,databaseAccounts.getLaatsteId());
                         }
                     }
             }

@@ -122,7 +122,7 @@ public class ActivityFood extends AppCompatActivity  implements NavigationView.O
     }
     // vanaf hier de code
     public void updateListView(){
-        foods = databaseFood.info();
+        foods = databaseFood.info(databaseAccounts.getLaatsteId());
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,foods);
         listViewFoodListViewJavaClass.setAdapter(adapter);
     }

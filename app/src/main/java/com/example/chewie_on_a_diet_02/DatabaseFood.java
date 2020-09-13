@@ -21,6 +21,7 @@ public class DatabaseFood extends SQLiteOpenHelper {
     public static final String COL_3 = "merk";
     public static final String COL_4 = "groote";
     public static final String COL_5 = "calorien";
+    public static final String COL_6 = "idaccount";
 
     public DatabaseFood(@Nullable Context context) {
         super(context, DATABASE_NAME , null ,1);
@@ -28,7 +29,7 @@ public class DatabaseFood extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + DATABASE_TABLE + " (id INTEGER primary key, naam text , merk text , groote INTEGER" +
-                " , calorien INTEGER) " );
+                " , calorien INTEGER, idaccount INTEGER) " );
     }
 
     @Override
@@ -46,7 +47,7 @@ public class DatabaseFood extends SQLiteOpenHelper {
     }
 
 
-    public void insertFoodObject(ObjectFood foodObject){
+    public void insertFoodObject(ObjectFood foodObject,int idaccount){
         if (foodObject != null){
             SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
@@ -55,16 +56,17 @@ public class DatabaseFood extends SQLiteOpenHelper {
             contentValues.put(COL_3,foodObject.getMerk());
             contentValues.put(COL_4,100);
             contentValues.put(COL_5,foodObject.getCalorien());
+            contentValues.put(COL_6,idaccount);
             sqLiteDatabase.insert(DATABASE_TABLE,null,contentValues);
         }
     }
 
 
-    public String getinfo(int idN){
+    public String getinfo(int idN,int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from databasefood where id =="+idN+"", null);
+                "select * from databasefood where id =="+idN+"" + " and idaccount ==" + idaccount, null);
         if (cursor.moveToFirst()){
             stringBuffer.append(cursor.getString(1));
             stringBuffer.append("  ||  ");
@@ -76,66 +78,66 @@ public class DatabaseFood extends SQLiteOpenHelper {
         return stringBuffer.toString();
     }
 
-    public ArrayList info(){
+    public ArrayList info(int idaccount){
         ArrayList<String>objectFoods;
         objectFoods = new ArrayList<>();
         for (int i = 0 ; i < IDMAKER(); i++){
-            objectFoods.add(getinfo(i));
+            objectFoods.add(getinfo(i,idaccount));
         }
         return objectFoods;
     }
 
-    public String getCol2(int i){
+    public String getCol2(int i,int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select naam from databasefood where id ==" + i, null);
+                "select naam from databasefood where id ==" + i+ " and idaccount ==" + idaccount, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
         return stringBuffer.toString();
     }
-    public String getCol3(int i){
+    public String getCol3(int i,int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select merk from databasefood where id ==" + i, null);
+                "select merk from databasefood where id ==" + i+ " and idaccount ==" + idaccount, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
         return stringBuffer.toString();
     }
-    public String getCol4(int i){
+    public String getCol4(int i,int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select groote from databasefood where id ==" + i, null);
+                "select groote from databasefood where id ==" + i+ " and idaccount ==" + idaccount, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
         return stringBuffer.toString();
     }
-    public String getCol5(int i){
+    public String getCol5(int i,int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select calorien from databasefood where id ==" + i, null);
+                "select calorien from databasefood where id ==" + i+ " and idaccount ==" + idaccount, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
         return stringBuffer.toString();
     }
 
-    public ArrayList get(int i){
+    public ArrayList get(int i,int idaccount){
 
         ArrayList<String>foodObjecten;
         foodObjecten = new ArrayList<>();
 
         foodObjecten.add(i+"");
-        foodObjecten.add(getCol2(i));
-        foodObjecten.add(getCol3(i));
-        foodObjecten.add(getCol4(i));
-        foodObjecten.add(getCol5(i));
+        foodObjecten.add(getCol2(i,idaccount));
+        foodObjecten.add(getCol3(i,idaccount));
+        foodObjecten.add(getCol4(i,idaccount));
+        foodObjecten.add(getCol5(i,idaccount));
 
         return foodObjecten;
     }
