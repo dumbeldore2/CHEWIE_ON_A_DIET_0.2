@@ -19,6 +19,7 @@ public class DatabaseDrink extends SQLiteOpenHelper {
     public static final String COL_3 = "merk";
     public static final String COL_4 = "groote";
     public static final String COL_5 = "calorien";
+    public static final String COL_6 = "idaccount";
 
     public DatabaseDrink(@Nullable Context context) {
         super(context, DATABASE_NAME , null ,1);
@@ -26,7 +27,7 @@ public class DatabaseDrink extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + DATABASE_TABLE + " (id INTEGER primary key, naam text , merk text , groote INTEGER" +
-                " , calorien INTEGER) " );
+                " , calorien INTEGER, idaccount INTEGER) " );
     }
 
     @Override
@@ -42,7 +43,7 @@ public class DatabaseDrink extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
-    public void insertDrinkObject(ObjectDrink drinkObject){
+    public void insertDrinkObject(ObjectDrink drinkObject , int idaccount){
         if (drinkObject != null){
             SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
@@ -51,15 +52,16 @@ public class DatabaseDrink extends SQLiteOpenHelper {
             contentValues.put(COL_3,drinkObject.getMerk());
             contentValues.put(COL_4,100);
             contentValues.put(COL_5,drinkObject.getCalorien());
+            contentValues.put(COL_6,idaccount);
             sqLiteDatabase.insert(DATABASE_TABLE,null,contentValues);
         }
     }
 
-    public String getinfo(int idN){
+    public String getinfo(int idN , int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from databasedrink where id =="+idN+"", null);
+                "select * from databasedrink where id =="+idN+"" + " and idaccount =="+idaccount, null);
         if (cursor.moveToFirst()){
             stringBuffer.append(cursor.getString(1));
             stringBuffer.append("  ||  ");
@@ -71,65 +73,65 @@ public class DatabaseDrink extends SQLiteOpenHelper {
         return stringBuffer.toString();
     }
 
-    public ArrayList info(){
+    public ArrayList info(int idaccount){
         ArrayList<String>objectDrinks;
         objectDrinks = new ArrayList<>();
         for (int i = 0 ; i < IDMAKER(); i++){
-            objectDrinks.add(getinfo(i));
+            objectDrinks.add(getinfo(i,idaccount));
         }
         return objectDrinks;
     }
 
-    public String getCol2(int i){
+    public String getCol2(int i , int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select naam from databasedrink where id ==" + i, null);
+                "select naam from databasedrink where id ==" + i+ " and idaccount =="+idaccount, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
         return stringBuffer.toString();
     }
-    public String getCol3(int i){
+    public String getCol3(int i, int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select merk from databasedrink where id ==" + i, null);
+                "select merk from databasedrink where id ==" + i+ " and idaccount =="+idaccount, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
         return stringBuffer.toString();
     }
-    public String getCol4(int i){
+    public String getCol4(int i,int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select groote from databasedrink where id ==" + i, null);
+                "select groote from databasedrink where id ==" + i+ " and idaccount =="+idaccount, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
         return stringBuffer.toString();
     }
-    public String getCol5(int i){
+    public String getCol5(int i, int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select calorien from databasedrink where id ==" + i, null);
+                "select calorien from databasedrink where id ==" + i+ " and idaccount =="+idaccount, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
         return stringBuffer.toString();
     }
 
-    public ArrayList get(int i){
+    public ArrayList get(int i,int idaccount){
         ArrayList<String>drinkObjects;
         drinkObjects = new ArrayList<>();
 
         drinkObjects.add(i+"");
-        drinkObjects.add(getCol2(i));
-        drinkObjects.add(getCol3(i));
-        drinkObjects.add(getCol4(i));
-        drinkObjects.add(getCol5(i));
+        drinkObjects.add(getCol2(i,idaccount));
+        drinkObjects.add(getCol3(i,idaccount));
+        drinkObjects.add(getCol4(i,idaccount));
+        drinkObjects.add(getCol5(i,idaccount));
 
         return drinkObjects;
     }

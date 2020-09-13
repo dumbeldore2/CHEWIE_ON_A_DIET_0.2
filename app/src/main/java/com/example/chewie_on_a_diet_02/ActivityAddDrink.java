@@ -32,6 +32,7 @@ public class ActivityAddDrink extends AppCompatActivity {
     EditText calorienAddDrinkEditTextJavaClass;
     Button addAddDrinkButtonJavaClass;
     DatabaseDrink databaseDrink;
+    DatabaseAccounts databaseAccounts;
     int order;
 
     @Override
@@ -45,14 +46,11 @@ public class ActivityAddDrink extends AppCompatActivity {
         naamAddDrinkEditTextJavaClass  = findViewById(R.id.naamAddDrinkEditTextContent);
         merkAddDrinkEditTextJavaClass  = findViewById(R.id.merkAddDrinkEditTextContent);
         calorienAddDrinkEditTextJavaClass  = findViewById(R.id.calorienAddDrinkEditTextContent);
-
         addAddDrinkButtonJavaClass  = findViewById(R.id.addAddDrinkButtonContent);
-
         databaseDrink = new DatabaseDrink(this);
-
         Intent intent = getIntent();
         order = intent.getIntExtra("order",-1);
-        System.out.println(order);
+        databaseAccounts = new DatabaseAccounts(this);
 
         //functies
         addDrinkToDataBaseFinal();
@@ -69,7 +67,7 @@ public class ActivityAddDrink extends AppCompatActivity {
                                 merkAddDrinkEditTextJavaClass.getText().toString(), 100 ,
                                 Integer.parseInt(calorienAddDrinkEditTextJavaClass.getText().toString()));
                         if (drinkObject != null){
-                            databaseDrink.insertDrinkObject(drinkObject);
+                            databaseDrink.insertDrinkObject(drinkObject,databaseAccounts.getLaatsteId());
                         }
                     }
             }

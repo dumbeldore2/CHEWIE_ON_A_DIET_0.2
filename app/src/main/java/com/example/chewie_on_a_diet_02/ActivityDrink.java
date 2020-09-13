@@ -128,7 +128,7 @@ ActivityDrink extends AppCompatActivity implements NavigationView.OnNavigationIt
     }
 
     public void updateListView(){
-        drinks = databaseDrink.info();
+        drinks = databaseDrink.info(databaseAccounts.getLaatsteId());
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,
                 drinks);
         listViewDrinkListViewJavaClass.setAdapter(arrayAdapter);

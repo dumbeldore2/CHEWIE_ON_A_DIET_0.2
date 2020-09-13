@@ -134,7 +134,7 @@ public class ActivityActivity extends AppCompatActivity implements NavigationVie
     //decode
 
     public void updateListView(){
-        activitys = databaseActivity.info();
+        activitys = databaseActivity.info(databaseAccounts.getLaatsteId());
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,activitys);
         listView.setAdapter(adapter);
     }

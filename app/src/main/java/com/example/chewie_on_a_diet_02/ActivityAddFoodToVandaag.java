@@ -30,6 +30,7 @@ public class ActivityAddFoodToVandaag extends AppCompatActivity {
     ArrayList<String>foods;
     ArrayList<String>drinks;
     Button addNewObject;
+    DatabaseAccounts databaseAccounts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,7 @@ public class ActivityAddFoodToVandaag extends AppCompatActivity {
         foods = new ArrayList<>();
         drinks = new ArrayList<>();
         addNewObject = findViewById(R.id.AddNewObject);
+        databaseAccounts = new DatabaseAccounts(this);
         //initialiseer functies
         updateListViews();
         clickOnFood();
@@ -58,7 +60,7 @@ public class ActivityAddFoodToVandaag extends AppCompatActivity {
     //functies
     public void updateListViews(){
         foods = databaseFood.info();
-        drinks = databaseDrink.info();
+        drinks = databaseDrink.info(databaseAccounts.getLaatsteId());
 
         ArrayAdapter arrayAdapterfood = new ArrayAdapter(this,android.R.layout.simple_list_item_1
                 ,foods);
@@ -112,7 +114,7 @@ public class ActivityAddFoodToVandaag extends AppCompatActivity {
 
                         ArrayList<String>objects;
                         objects = new ArrayList<>();
-                        objects = databaseDrink.get(i);
+                        objects = databaseDrink.get(i,databaseAccounts.getLaatsteId());
 
                         Intent intent = new Intent(getApplicationContext(),
                                 ActivityFormat.class);

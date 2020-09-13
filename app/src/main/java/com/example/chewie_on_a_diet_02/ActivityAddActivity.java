@@ -26,10 +26,9 @@ public class ActivityAddActivity extends AppCompatActivity {
     EditText duurActivityEditTextJavaClass;
     EditText aantalCalActivityEditTextJavaClass;
     EditText extraInfoActivityEditTextJavaClass;
-
     Button addActivityButtonJavaClass;
-
     DatabaseActivity databaseActivity;
+    DatabaseAccounts databaseAccounts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +41,9 @@ public class ActivityAddActivity extends AppCompatActivity {
         duurActivityEditTextJavaClass = findViewById(R.id.duurActivityEditTextContent);
         aantalCalActivityEditTextJavaClass = findViewById(R.id.aantalCalActivityEditTextContent);
         extraInfoActivityEditTextJavaClass = findViewById(R.id.extraInfoActivityEditTextContent);
-
         addActivityButtonJavaClass = findViewById(R.id.addActivityButtonContent);
-
         databaseActivity = new DatabaseActivity(this);
+        databaseAccounts = new DatabaseAccounts(this);
         //initialisatie van de functies
         addToDB();
 
@@ -58,7 +56,7 @@ public class ActivityAddActivity extends AppCompatActivity {
                 if (Integer.parseInt(duurActivityEditTextJavaClass.getText().toString()) > 0){
                     if (Integer.parseInt(aantalCalActivityEditTextJavaClass.getText().toString())>0){
                         if (!extraInfoActivityEditTextJavaClass.getText().toString().trim().isEmpty()){
-                            databaseActivity.insertData(Integer.parseInt(duurActivityEditTextJavaClass.getText().toString()),Integer.parseInt(aantalCalActivityEditTextJavaClass.getText().toString()),extraInfoActivityEditTextJavaClass.getText().toString());
+                            databaseActivity.insertData(Integer.parseInt(duurActivityEditTextJavaClass.getText().toString()),Integer.parseInt(aantalCalActivityEditTextJavaClass.getText().toString()),extraInfoActivityEditTextJavaClass.getText().toString(),databaseAccounts.getLaatsteId());
                             Intent intent = new Intent(ActivityAddActivity.this,
                                     ActivityActivity.class);
                             startActivity(intent);
