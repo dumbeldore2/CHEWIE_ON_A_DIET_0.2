@@ -24,6 +24,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
     public static final String COL_5 = "extra";
     public static final String COL_6 = "idaccount";
 
+
     public DatabaseActivity(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
@@ -47,7 +48,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
-    public void insertData(int duur , int cal , String extra){
+    public void insertData(int duur , int cal , String extra, int idaccount){
         if (duur < 0)throw new IllegalArgumentException();
         if (cal < 0)throw new IllegalArgumentException();
         if (extra.trim().isEmpty())throw new IllegalArgumentException();
@@ -62,11 +63,12 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         contentValues.put(COL_3, duur);
         contentValues.put(COL_4, cal);
         contentValues.put(COL_5, extra);
+        contentValues.put(COL_6, idaccount);
 
         sqLiteDatabase.insert(DATABASE_TABLE,null,contentValues);
     }
 
-    public boolean erZijnAlDatas(){
+    public boolean erZijnAlDatas(int idaccount){
 
         Boolean uit = false;
 
@@ -74,28 +76,28 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from databaseactivity where datum ==" + "'" + deDatum +
-                "'",null);
+        Cursor cursor =
+                sqLiteDatabase.rawQuery("select * from databaseactivity where datum ==" + "'" + deDatum + "'" + "and idaccount ==" + idaccount,null);
         if (cursor.getCount() > 0){
             uit = true;
         }
         return uit;
     }
 
-    public ArrayList info(){
+    public ArrayList info(int idaccount){
         ArrayList<String>activitys;
         activitys = new ArrayList<>();
         for (int i = IDMAKER() -1 ; i >= 0; i--){
-            activitys.add(getinfo(i));
+            activitys.add(getinfo(i,idaccount));
         }
         return activitys;
     }
 
-    public String getinfo(int idN){
+    public String getinfo(int idN ,int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from databaseactivity where id =="+idN+"", null);
+                "select * from databaseactivity where id =="+idN+"" + "and idaccount ==" + idaccount, null);
         if (cursor.moveToPosition(0)){
             stringBuffer.append(cursor.getString(1));
             stringBuffer.append("  ||  ");
@@ -108,18 +110,18 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         return stringBuffer.toString();
     }
 
-    public int getGrooteVanVandaag(){
+    public int getGrooteVanVandaag(int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         Date calendar = Calendar.getInstance().getTime();
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from databaseactivity where datum ==" + "'" + deDatum + "'",null
+                "select * from databaseactivity where datum ==" + "'" + deDatum + "'" + "and idaccount ==" + idaccount,null
         );
         return cursor.getCount();
     }
-    public String getID(int i){
+    public String getID(int i, int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
 
@@ -127,21 +129,21 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from databaseactivity where datum =="+"'"+deDatum+"'",null);
+                "select * from databaseactivity where datum =="+"'"+deDatum+"'" + "and idaccount ==" + idaccount,null);
         if (cursor.moveToPosition(i)){
             stringBuffer.append(cursor.getString(0));
         }
         return stringBuffer.toString();
     }
-    public ArrayList getIds(){
+    public ArrayList getIds(int idaccount){
         ArrayList<String> nummers;
         nummers = new ArrayList<>();
-        for (int i = 0; i < getGrooteVanVandaag() ; i++){
-            nummers.add(getID(i));
+        for (int i = 0; i < getGrooteVanVandaag(idaccount) ; i++){
+            nummers.add(getID(i,idaccount));
         }
         return nummers;
     }
-    public String getinfoVanDieDag(int idN){
+    public String getinfoVanDieDag(int idN , int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
 
@@ -149,7 +151,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from databaseactivity where id =="+idN+" and datum ==" + "'" + deDatum + "'", null);
+                "select * from databaseactivity where id =="+idN+" and datum ==" + "'" + deDatum + "'" + "and idaccount ==" + idaccount, null);
         if(cursor.moveToPosition(0)){
             stringBuffer.append(cursor.getString(1));
             stringBuffer.append("  ||  ");
@@ -161,14 +163,14 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         return stringBuffer.toString();
     }
 
-    public ArrayList infotwee() {
+    public ArrayList infotwee(int idaccount) {
         ArrayList<String> today;
         today = new ArrayList<>();
         ArrayList<String> nummers;
         nummers = new ArrayList<>();
-        nummers = getIds();
-        for (int i = getGrooteVanVandaag() - 1; i >= 0; i--) {
-            today.add(getinfoVanDieDag(Integer.parseInt(nummers.get(i))));
+        nummers = getIds(idaccount);
+        for (int i = getGrooteVanVandaag(idaccount) - 1; i >= 0; i--) {
+            today.add(getinfoVanDieDag(Integer.parseInt(nummers.get(i)),idaccount));
         }
         return today;
     }

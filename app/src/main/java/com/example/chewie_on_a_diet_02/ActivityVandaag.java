@@ -195,8 +195,8 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
     }
 
     public void updateListViewtwee(){
-        if (databaseActivity.erZijnAlDatas()){
-            todayActivity = databaseActivity.infotwee();
+        if (databaseActivity.erZijnAlDatas(databaseAccounts.getLaatsteId())){
+            todayActivity = databaseActivity.infotwee(databaseAccounts.getLaatsteId());
             ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,todayActivity);
             listViewTweeVandaagListViewJavaClass.setAdapter(adapter);
         }
