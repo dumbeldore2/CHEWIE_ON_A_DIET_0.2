@@ -128,7 +128,7 @@ public class ActivityCheckWeight extends AppCompatActivity implements Navigation
 
     // de code hier
     public void updateListView(){
-        weights = databaseWeight.info();
+        weights = databaseWeight.info(databaseAccounts.getLaatsteId());
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,weights);
         listView.setAdapter(adapter);
     }
@@ -143,8 +143,8 @@ public class ActivityCheckWeight extends AppCompatActivity implements Navigation
         });
     }
     public void updateTextView(){
-        if(databaseWeight.erZijnAlDatas()){
-            infoLaatsteGewicht.setText(databaseWeight.getLaatsteGewicht());
+        if(databaseWeight.erZijnAlDatas(databaseAccounts.getLaatsteId())){
+            infoLaatsteGewicht.setText(databaseWeight.getLaatsteGewicht(databaseAccounts.getLaatsteId()));
         }
     }
     public void naamFun(){

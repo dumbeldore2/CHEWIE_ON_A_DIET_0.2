@@ -24,6 +24,7 @@ public class DatabaseFull extends SQLiteOpenHelper {
     public static final String COL_5 = "calorien";
     public static final String COL_6 = "datum";
     public static final String COL_7 = "soort";
+    public static final String COL_8 = "idaccount";
 
     public DatabaseFull(@Nullable Context context) {
         super(context, DATABASE_NAME , null ,1);
@@ -31,7 +32,7 @@ public class DatabaseFull extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + DATABASE_TABLE + " (id INTEGER primary key, naam text , merk text , groote INTEGER" +
-                " , calorien float , datum text, soort text) " );
+                " , calorien float , datum text, soort text , idaccount INTEGER) " );
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -46,7 +47,7 @@ public class DatabaseFull extends SQLiteOpenHelper {
         );
         return cursor.getCount();
     }
-    public void insert(String a,String b, int c,double d,String f){
+    public void insert(String a,String b, int c,double d,String f,int idaccount){
         Date calendar = Calendar.getInstance().getTime();
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
@@ -59,23 +60,24 @@ public class DatabaseFull extends SQLiteOpenHelper {
         contentValues.put(COL_5,d);
         contentValues.put(COL_6,deDatum);
         contentValues.put(COL_7,f);
+        contentValues.put(COL_8,idaccount);
         sqLiteDatabase.insert(DATABASE_TABLE,null,contentValues);
 
     }
 
 
-    public int getGrooteVanVandaag(){
+    public int getGrooteVanVandaag(int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         Date calendar = Calendar.getInstance().getTime();
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from databasefull where datum ==" + "'" + deDatum + "'",null
+                "select * from databasefull where datum ==" + "'" + deDatum + "'" + "and idaccount ==" + idaccount,null
         );
         return cursor.getCount();
     }
-    public String getID(int i){
+    public String getID(int i,int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
 
@@ -83,21 +85,21 @@ public class DatabaseFull extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from databasefull where datum =="+"'"+deDatum+"'",null);
+                "select * from databasefull where datum =="+"'"+deDatum+"'" + "and idaccount ==" + idaccount,null);
         if (cursor.moveToPosition(i)){
             stringBuffer.append(cursor.getString(0));
         }
         return stringBuffer.toString();
     }
-    public ArrayList getIds(){
+    public ArrayList getIds(int idaccount){
         ArrayList<String> nummers;
         nummers = new ArrayList<>();
-        for (int i = 0; i < getGrooteVanVandaag() ; i++){
-           nummers.add(getID(i));
+        for (int i = 0; i < getGrooteVanVandaag(idaccount) ; i++){
+           nummers.add(getID(i,idaccount));
         }
         return nummers;
     }
-    public String getinfoVanDieDag(int idN){
+    public String getinfoVanDieDag(int idN,int idaccount){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
 
@@ -117,27 +119,27 @@ public class DatabaseFull extends SQLiteOpenHelper {
         return stringBuffer.toString();
     }
 
-    public ArrayList info() {
+    public ArrayList info(int idaccount) {
         ArrayList<String> today;
         today = new ArrayList<>();
         ArrayList<String> nummers;
         nummers = new ArrayList<>();
-        nummers = getIds();
-        for (int i = getGrooteVanVandaag() - 1; i >= 0; i--) {
-            System.out.println(getinfoVanDieDag(Integer.parseInt(nummers.get(i))));
-            today.add(getinfoVanDieDag(Integer.parseInt(nummers.get(i))));
+        nummers = getIds(idaccount);
+        for (int i = getGrooteVanVandaag(idaccount) - 1; i >= 0; i--) {
+            System.out.println(getinfoVanDieDag(Integer.parseInt(nummers.get(i)),idaccount));
+            today.add(getinfoVanDieDag(Integer.parseInt(nummers.get(i)),idaccount));
         }
         return today;
     }
 
 
 
-    public double berekenDagelijkseCal(String deDatum){
+    public double berekenDagelijkseCal(String deDatum,int idaccount){
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
 
-        if (erZijnAlDatas()){
+        if (erZijnAlDatas(idaccount)){
             Cursor cursor = sqLiteDatabase.rawQuery(
                     "select sum(calorien) from databasefull where datum ==" + "'" + deDatum + "'",null);
             if (cursor.moveToFirst()){
@@ -147,7 +149,7 @@ public class DatabaseFull extends SQLiteOpenHelper {
         return Double.parseDouble(stringBuffer.toString());
     }
 
-    public boolean erZijnAlDatas(){
+    public boolean erZijnAlDatas(int idaccount){
         Boolean uit = false;
 
         Date calendar = Calendar.getInstance().getTime();

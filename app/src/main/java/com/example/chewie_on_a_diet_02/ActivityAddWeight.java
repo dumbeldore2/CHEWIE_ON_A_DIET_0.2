@@ -14,10 +14,9 @@ import android.widget.EditText;
 public class ActivityAddWeight extends AppCompatActivity {
     //variabelen
     EditText gewichtAddWeightEditTextJavaClass;
-
     Button addAddWeightButtonJavaClass;
-
     DatabaseWeight databaseWeight;
+    DatabaseAccounts databaseAccounts;
 
 
     @Override
@@ -29,10 +28,9 @@ public class ActivityAddWeight extends AppCompatActivity {
 
         //declarisatie van de variabelen
         gewichtAddWeightEditTextJavaClass = findViewById(R.id.gewichtAddWeightEditTextContent);
-
         addAddWeightButtonJavaClass = findViewById(R.id.addAddWeightButtonContent);
-
         databaseWeight = new DatabaseWeight(this);
+        databaseAccounts = new DatabaseAccounts(this);
 
         //declarisatie van de functies
         addGewichtToDBFinal();
@@ -41,7 +39,8 @@ public class ActivityAddWeight extends AppCompatActivity {
     //de code
     public void addGewichtToDB(){
         if (!gewichtAddWeightEditTextJavaClass.getText().toString().trim().isEmpty()){
-            databaseWeight.insertData(gewichtAddWeightEditTextJavaClass.getText().toString());
+            databaseWeight.insertData(gewichtAddWeightEditTextJavaClass.getText().toString(),
+                    databaseAccounts.getLaatsteId());
         }
     }
 

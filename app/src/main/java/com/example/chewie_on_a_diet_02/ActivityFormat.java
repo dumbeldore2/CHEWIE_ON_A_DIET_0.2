@@ -25,6 +25,7 @@ public class ActivityFormat extends AppCompatActivity {
     double gegevenGetal , gegevenGetal2;
     EditText editText;
     Button button;
+    DatabaseAccounts databaseAccounts;
 
 
     @Override
@@ -40,9 +41,8 @@ public class ActivityFormat extends AppCompatActivity {
         databaseFull = new DatabaseFull(this);
         editText = findViewById(R.id.FormaatEditTextContent);
         button = findViewById(R.id.FormaatButtonContent);
-
+        databaseAccounts = new DatabaseAccounts(this);
         Intent get = getIntent();
-
         huidigCal = get.getStringExtra("calorien");
         huidigCalInt = Integer.parseInt(huidigCal.trim());
         naam = get.getStringExtra("naam");
@@ -76,42 +76,50 @@ public class ActivityFormat extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){
-                    databaseFull.insert(naam,merk,50,huidigCalInt * 0.5, categorie);
+                    databaseFull.insert(naam,merk,50,huidigCalInt * 0.5, categorie,
+                            databaseAccounts.getLaatsteId());
                     Intent intent = new Intent(ActivityFormat.this, ActivityVandaag.class);
                     startActivity(intent);
                 }
                 if (position == 1){
-                    databaseFull.insert(naam,merk,125,huidigCalInt * 1.25, categorie);
+                    databaseFull.insert(naam,merk,125,huidigCalInt * 1.25, categorie,
+                            databaseAccounts.getLaatsteId());
                     Intent intent = new Intent(ActivityFormat.this, ActivityVandaag.class);
                     startActivity(intent);
                 }
                 if (position == 2){
-                    databaseFull.insert(naam,merk,150,huidigCalInt * 1.5, categorie);
+                    databaseFull.insert(naam,merk,150,huidigCalInt * 1.5, categorie,
+                            databaseAccounts.getLaatsteId());
                     Intent intent = new Intent(ActivityFormat.this, ActivityVandaag.class);
                     startActivity(intent);
                 }
                 if (position == 3){
-                    databaseFull.insert(naam,merk,175,huidigCalInt * 1.75, categorie);
+                    databaseFull.insert(naam,merk,175,huidigCalInt * 1.75, categorie,
+                            databaseAccounts.getLaatsteId());
                     Intent intent = new Intent(ActivityFormat.this, ActivityVandaag.class);
                     startActivity(intent);
                 }
                 if (position == 4){
-                    databaseFull.insert(naam,merk,200,huidigCalInt * 2, categorie);
+                    databaseFull.insert(naam,merk,200,huidigCalInt * 2, categorie,
+                            databaseAccounts.getLaatsteId());
                     Intent intent = new Intent(ActivityFormat.this, ActivityVandaag.class);
                     startActivity(intent);
                 }
                 if (position == 5){
-                    databaseFull.insert(naam,merk,340,huidigCalInt * 3.4, categorie);
+                    databaseFull.insert(naam,merk,340,huidigCalInt * 3.4, categorie,
+                            databaseAccounts.getLaatsteId());
                     Intent intent = new Intent(ActivityFormat.this, ActivityVandaag.class);
                     startActivity(intent);
                 }
                 if (position == 6){
-                    databaseFull.insert(naam,merk,150,huidigCalInt * 1.5, categorie);
+                    databaseFull.insert(naam,merk,150,huidigCalInt * 1.5, categorie,
+                            databaseAccounts.getLaatsteId());
                     Intent intent = new Intent(ActivityFormat.this, ActivityVandaag.class);
                     startActivity(intent);
                 }
                 if (position == 7){
-                    databaseFull.insert(naam,merk,250,huidigCalInt * 2.5, categorie);
+                    databaseFull.insert(naam,merk,250,huidigCalInt * 2.5, categorie,
+                            databaseAccounts.getLaatsteId());
                     Intent intent = new Intent(ActivityFormat.this, ActivityVandaag.class);
                     startActivity(intent);
                 }
@@ -131,7 +139,8 @@ public class ActivityFormat extends AppCompatActivity {
                         gegevenGetal = Double.parseDouble(editText.getText().toString());
                         gegevenGetal2 = gegevenGetal / 100;
 
-                        databaseFull.insert(naam,merk,(int)gegevenGetal,huidigCalInt * (gegevenGetal2), categorie);
+                        databaseFull.insert(naam,merk,(int)gegevenGetal,
+                                huidigCalInt * (gegevenGetal2), categorie,databaseAccounts.getLaatsteId());
                         Intent intent = new Intent(ActivityFormat.this, ActivityVandaag.class);
                         startActivity(intent);
                          }
