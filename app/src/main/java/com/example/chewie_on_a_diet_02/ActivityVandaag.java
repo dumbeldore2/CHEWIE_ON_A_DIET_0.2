@@ -167,13 +167,13 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
         Date calendar = Calendar.getInstance().getTime();
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
-        if (databaseFull.erZijnAlDatas()){
+        if (databaseFull.erZijnAlDatas(databaseAccounts.getLaatsteId())){
 
-            databaseDagEnCalorien.updateDatabase(databaseFull.berekenDagelijkseCal(deDatum),databaseAccounts.getLaatsteId());
+            databaseDagEnCalorien.updateDatabase(databaseFull.berekenDagelijkseCal(deDatum,databaseAccounts.getLaatsteId()),databaseAccounts.getLaatsteId());
             eigenCalorienVandaagTextViewJavaClass.setText("today : " + databaseDagEnCalorien.getCalHuidig(databaseAccounts.getLaatsteId()));
 
         } else {
-            if (!databaseFull.erZijnAlDatas()){
+            if (!databaseFull.erZijnAlDatas(databaseAccounts.getLaatsteId())){
                 eigenCalorienVandaagTextViewJavaClass.setText("today : 0 CAL");
             }
         }
@@ -188,7 +188,7 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
     }
 
     public void updateListView(){
-        today = databaseFull.info();
+        today = databaseFull.info(databaseAccounts.getLaatsteId());
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,
                 today);
         listViewVandaagListViewJavaClass.setAdapter(arrayAdapter);

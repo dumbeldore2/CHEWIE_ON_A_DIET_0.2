@@ -76,7 +76,8 @@ public class DatabaseWeight extends SQLiteOpenHelper {
         Boolean uit = false;
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from databaseweight"+ "and idaccount ==" + idaccount,null);
+        Cursor cursor =
+                sqLiteDatabase.rawQuery("select * from databaseweight where idaccount ==" + idaccount,null);
         if (cursor.getCount() > 0){
             uit = true;
         }

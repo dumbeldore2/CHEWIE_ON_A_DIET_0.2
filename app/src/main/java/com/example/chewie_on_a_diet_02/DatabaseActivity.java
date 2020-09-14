@@ -97,7 +97,7 @@ public class DatabaseActivity extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select * from databaseactivity where id =="+idN+"" + "and idaccount ==" + idaccount, null);
+                "select * from databaseactivity where id =="+idN+"" + " and idaccount ==" + idaccount, null);
         if (cursor.moveToPosition(0)){
             stringBuffer.append(cursor.getString(1));
             stringBuffer.append("  ||  ");
@@ -156,9 +156,8 @@ public class DatabaseActivity extends SQLiteOpenHelper {
             stringBuffer.append(cursor.getString(1));
             stringBuffer.append("  ||  ");
             stringBuffer.append(cursor.getString(3));
-            stringBuffer.append("gr  ||  ");
+            stringBuffer.append("cal  ||  ");
             stringBuffer.append(cursor.getString(4));
-            stringBuffer.append("cal");
         }
         return stringBuffer.toString();
     }

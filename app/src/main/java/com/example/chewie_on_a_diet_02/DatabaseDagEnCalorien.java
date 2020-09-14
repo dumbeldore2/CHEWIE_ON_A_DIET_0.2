@@ -61,7 +61,7 @@ public class DatabaseDagEnCalorien extends SQLiteOpenHelper {
 
     }
 
-    public int getId() {
+    public int getId(int idaccount) {
 
         Date calendar = Calendar.getInstance().getTime();
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
@@ -69,7 +69,7 @@ public class DatabaseDagEnCalorien extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
         Cursor cursor = sqLiteDatabase.rawQuery(
-                "select id from databasedagencalorien where datum ==" + "'" +deDatum + "'", null);
+                "select id from databasedagencalorien where datum ==" + "'" +deDatum + "'" + "and idaccount ==" + idaccount, null);
         if (cursor.moveToFirst()) {
             stringBuffer.append(cursor.getString(0));
         }
@@ -99,11 +99,11 @@ public class DatabaseDagEnCalorien extends SQLiteOpenHelper {
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, getId());
+        contentValues.put(COL_1, getId(idAccount));
         contentValues.put(COL_2, deDatum);
         contentValues.put(COL_3, plusCalorien);
         contentValues.put(COL_4, idAccount);
-        sqLiteDatabase.update(DATABASE_TABLE, contentValues, "id = ?", new String[]{""+getId()});
+        sqLiteDatabase.update(DATABASE_TABLE, contentValues, "id = ?", new String[]{""+getId(idAccount)});
     }
 
     public boolean ErIsNogNiksVanDieDatum(String dedatum , int idaccount) {

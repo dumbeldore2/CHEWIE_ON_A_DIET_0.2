@@ -141,7 +141,7 @@ public class DatabaseFull extends SQLiteOpenHelper {
 
         if (erZijnAlDatas(idaccount)){
             Cursor cursor = sqLiteDatabase.rawQuery(
-                    "select sum(calorien) from databasefull where datum ==" + "'" + deDatum + "'",null);
+                    "select sum(calorien) from databasefull where datum ==" + "'" + deDatum + "'" + "and idaccount ==" + idaccount,null);
             if (cursor.moveToFirst()){
                 stringBuffer.append(cursor.getString(0));
             }
@@ -156,8 +156,8 @@ public class DatabaseFull extends SQLiteOpenHelper {
         String deDatum = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar);
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from databasefull where datum ==" + "'" + deDatum +
-                "'",null);
+        Cursor cursor =
+                sqLiteDatabase.rawQuery("select * from databasefull where datum ==" + "'" + deDatum +"'" + "and idaccount ==" + idaccount,null);
         if (cursor.getCount() > 0){
             uit = true;
         }
