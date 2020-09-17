@@ -51,6 +51,7 @@ public class ActivityRegistreren extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                databaseAccounts.updateAllesNaarFals();
                 databaseAccounts.insertData(getUsername(),getPassword(),getEmail());
                 Intent intent = new Intent(getApplicationContext(),ActivityMain.class);
                 startActivity(intent);

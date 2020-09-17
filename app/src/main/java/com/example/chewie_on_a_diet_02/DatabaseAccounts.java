@@ -20,6 +20,7 @@ class DatabaseAccounts extends SQLiteOpenHelper {
     public static final String COL_2 = "username";
     public static final String COL_3 = "password";
     public static final String COL_4 = "emailadres";
+    public static final String COL_5 = "laatste";
 
     public DatabaseAccounts(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -28,7 +29,7 @@ class DatabaseAccounts extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + DATABASE_TABLE + "(id INTEGER primary key, username text, " +
-                "password text, emailadres text)");
+                "password text, emailadres text, laatste text)");
     }
 
     @Override
@@ -56,6 +57,7 @@ class DatabaseAccounts extends SQLiteOpenHelper {
         contentValues.put(COL_2, username);
         contentValues.put(COL_3, password);
         contentValues.put(COL_4, emailadress);
+        contentValues.put(COL_5, "true");
 
         sqLiteDatabase.insert(DATABASE_TABLE,null,contentValues);
     }
@@ -95,5 +97,67 @@ class DatabaseAccounts extends SQLiteOpenHelper {
             stringBuffer.append(cursor.getString(0));
         }
         return Integer.parseInt(stringBuffer.toString());
+    }
+    public String getEmail(int id){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        Cursor cursor = sqLiteDatabase.rawQuery("select emailadres from databaseaccounts where id == " + id,
+                null);
+        if (cursor.moveToFirst()){
+            stringBuffer.append(cursor.getString(0));
+        }
+        return stringBuffer.toString();
+    }
+    public String getUsername(int id){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        Cursor cursor =
+                sqLiteDatabase.rawQuery("select username from databaseaccounts where id == " + id,
+                null);
+        if (cursor.moveToFirst()){
+            stringBuffer.append(cursor.getString(0));
+        }
+        return stringBuffer.toString();
+    }
+
+    public String getPassword(int id){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        StringBuffer stringBuffer = new StringBuffer();
+        Cursor cursor =
+                sqLiteDatabase.rawQuery("select password from databaseaccounts where id == " + id,
+                null);
+        if (cursor.moveToFirst()){
+            stringBuffer.append(cursor.getString(0));
+        }
+        return stringBuffer.toString();
+    }
+
+    public void updateAllesNaarFals(){
+        for (int i = 0 ;i < IDMAKER() ; i++ ){
+
+            SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COL_1, i);
+            contentValues.put(COL_2, getUsername(i));
+            contentValues.put(COL_3, getPassword(i));
+            contentValues.put(COL_4, getEmail(i));
+            contentValues.put(COL_5, "false");
+            sqLiteDatabase.update(DATABASE_TABLE, contentValues, "id = ?", new String[]{""+i});}
+    }
+
+    public void updateTrueTrue(int id){
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_1, id);
+        contentValues.put(COL_2, getUsername(id));
+        contentValues.put(COL_3, getPassword(id));
+        contentValues.put(COL_4, getEmail(id));
+        contentValues.put(COL_5, "trueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        sqLiteDatabase.update(DATABASE_TABLE, contentValues, "id = ?", new String[]{""+id});
+    }
+
+    public int getLaatste(){
+        return IDMAKER() -1;
     }
 }

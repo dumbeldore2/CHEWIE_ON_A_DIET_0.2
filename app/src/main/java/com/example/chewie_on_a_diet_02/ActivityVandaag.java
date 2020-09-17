@@ -95,6 +95,7 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
         updateListViewtwee();
         naamFun();
         tweedeNaamFun();
+        randomTester();
 
 
     }
@@ -216,5 +217,8 @@ public class ActivityVandaag extends AppCompatActivity implements NavigationView
             textView1NavHeader.setText(databaseAccounts.getLaatsteUsername());
             textView2NavHeader.setText(databaseAccounts.getLaatstemail());
         }
+    }
+    public void randomTester(){
+        databaseAccounts.updateAllesNaarFals();
     }
 }
