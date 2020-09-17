@@ -160,4 +160,9 @@ class DatabaseAccounts extends SQLiteOpenHelper {
     public int getLaatste(){
         return IDMAKER() -1;
     }
+
+    public boolean checkOfErIemandBestaatMetDezeNaam(String naam){
+        boolean uit = false;
+
+    }
 }

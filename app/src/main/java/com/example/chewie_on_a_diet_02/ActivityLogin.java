@@ -11,8 +11,8 @@ import android.widget.EditText;
 public class ActivityLogin extends AppCompatActivity {
 
     //variabelen
-    EditText loginUserName, loginPassword;
-    CheckBox loginCheckBoxForRemembering;
+    EditText loginUserName;
+    EditText loginPassword;
     Button loginInLoggenButton;
 
     @Override
@@ -23,11 +23,14 @@ public class ActivityLogin extends AppCompatActivity {
         //initialisatie van de variabelen
         loginUserName = findViewById(R.id.loginUserName);
         loginPassword = findViewById(R.id.loginPassword);
-        loginCheckBoxForRemembering = findViewById(R.id.loginCheckBoxForRemembering);
         loginInLoggenButton = findViewById(R.id.loginInloggenButton);
 
         //initialisatie van de functies
 
+    }
+
+    public String getLoginName(){
+        if (loginUserName.getText().toString().trim().isEmpty() || loginUserName == null)throw new IllegalArgumentException();
     }
 
     public void loginInLoggenButton(){
