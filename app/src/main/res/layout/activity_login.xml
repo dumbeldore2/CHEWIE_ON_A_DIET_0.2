@@ -14,7 +14,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="username"
-            android:layout_margin="30dp"/>
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"/>
+        <TextView
+            android:id="@+id/extraInfoInloggenActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            />
         <EditText
             android:id="@+id/loginPassword"
             android:layout_width="match_parent"

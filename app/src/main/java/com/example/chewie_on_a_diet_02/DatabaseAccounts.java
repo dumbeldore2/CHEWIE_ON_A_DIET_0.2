@@ -74,7 +74,8 @@ class DatabaseAccounts extends SQLiteOpenHelper {
     public String getLaatsteUsername(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
-        Cursor cursor = sqLiteDatabase.rawQuery("select username from databaseaccounts order by id desc limit 1",null);
+        Cursor cursor = sqLiteDatabase.rawQuery("select username from databaseaccounts where " +
+                "laatste ==" + "'" + "true" + "'" + " order by id desc limit 1",null);
         if (cursor.moveToFirst()){
             stringBuffer.append(cursor.getString(0));
         }
@@ -83,7 +84,7 @@ class DatabaseAccounts extends SQLiteOpenHelper {
     public String getLaatstemail(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
-        Cursor cursor = sqLiteDatabase.rawQuery("select emailadres from databaseaccounts order by id desc limit 1",null);
+        Cursor cursor = sqLiteDatabase.rawQuery("select emailadres from databaseaccounts where laatste == " + "'" + "true" + "'" + " order by id desc limit 1",null);
         if (cursor.moveToFirst()){
             stringBuffer.append(cursor.getString(0));
         }
@@ -92,7 +93,7 @@ class DatabaseAccounts extends SQLiteOpenHelper {
     public int getLaatsteId(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         StringBuffer stringBuffer = new StringBuffer();
-        Cursor cursor = sqLiteDatabase.rawQuery("select id from databaseaccounts order by id desc limit 1",null);
+        Cursor cursor = sqLiteDatabase.rawQuery("select id from databaseaccounts where laatste == " + "'" + "true" + "'" + " order by id desc limit 1",null);
         if (cursor.moveToFirst()){
             stringBuffer.append(cursor.getString(0));
         }
@@ -153,7 +154,7 @@ class DatabaseAccounts extends SQLiteOpenHelper {
         contentValues.put(COL_2, getUsername(id));
         contentValues.put(COL_3, getPassword(id));
         contentValues.put(COL_4, getEmail(id));
-        contentValues.put(COL_5, "trueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        contentValues.put(COL_5, "true");
         sqLiteDatabase.update(DATABASE_TABLE, contentValues, "id = ?", new String[]{""+id});
     }
 
@@ -163,6 +164,24 @@ class DatabaseAccounts extends SQLiteOpenHelper {
 
     public boolean checkOfErIemandBestaatMetDezeNaam(String naam){
         boolean uit = false;
+        for (int i = 0 ; i < IDMAKER()  && uit == false; i++){
+            if (naam.trim().equals(getUsername(i))){
+                uit = true;
+            }
+        }
+        return uit;
+    }
 
+
+    public int nummerCheckOfErIemandBestaatMetDezeNaam(String naam){
+        int uit = -1;
+        for (int i = 0 ; i < IDMAKER() ; i++){
+            if (naam.equals(getUsername(i))){
+                uit = i;
+                System.out.println(i);
+            }
+        }
+        System.out.println(uit);
+        return uit;
     }
 }
