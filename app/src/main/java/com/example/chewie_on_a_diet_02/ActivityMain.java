@@ -1,10 +1,16 @@
 package com.example.chewie_on_a_diet_02;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import android.text.SpannableString;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.TextAppearanceSpan;
 import android.view.MenuItem;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
@@ -15,6 +21,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.View;
@@ -26,7 +33,10 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ActivityMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class
+ActivityMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    //variabelen
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar = null;
@@ -34,7 +44,7 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
     TextView textView1NavHeader;
     DatabaseAccounts databaseAccounts;
     TextView textView2NavHeader;
-    //variabelen
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +53,13 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //declareer variabelen
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         headerView = navigationView.getHeaderView(0);
         textView1NavHeader = headerView.findViewById(R.id.TextView1NavHeader);
         databaseAccounts = new DatabaseAccounts(this);
         textView2NavHeader = headerView.findViewById(R.id.TextView2NavHeader);
-
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 
@@ -61,7 +70,6 @@ public class ActivityMain extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        //declareer variabelen
         //declareer functies
         naamFun();
         tweedeNaamFun();
