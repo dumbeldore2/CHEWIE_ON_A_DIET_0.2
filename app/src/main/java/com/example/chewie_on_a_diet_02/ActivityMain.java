@@ -44,7 +44,6 @@ ActivityMain extends AppCompatActivity implements NavigationView.OnNavigationIte
     TextView textView1NavHeader;
     DatabaseAccounts databaseAccounts;
     TextView textView2NavHeader;
-    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +138,7 @@ ActivityMain extends AppCompatActivity implements NavigationView.OnNavigationIte
         }
     }
     public void vulDBin() {
+        System.out.println(databaseAccounts.IDMAKER());
         if (!databaseAccounts.erIsAlDatas()) {
             databaseAccounts.insertData("android","android","android@gmail.com");
         }

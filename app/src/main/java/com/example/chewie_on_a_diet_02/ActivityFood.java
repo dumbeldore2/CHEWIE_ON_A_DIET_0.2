@@ -61,12 +61,12 @@ public class ActivityFood extends AppCompatActivity  implements NavigationView.O
 
         //declarisatie van de variabelen
         listViewFoodListViewJavaClass = findViewById(R.id.listViewFoodListViewContent);
-        databaseFood = new DatabaseFood(this);
+        databaseFood = new DatabaseFood(this);;
+        databaseAccounts = new DatabaseAccounts(this);
         foods = new ArrayList<>();
         addFoodFoodButtonJavaClass = findViewById(R.id.addFoodFoodButtonContent);
         headerView = navigationView.getHeaderView(0);
         textView1NavHeader = (TextView) headerView.findViewById(R.id.TextView1NavHeader);
-        databaseAccounts = new DatabaseAccounts(this);
         textView2NavHeader = headerView.findViewById(R.id.TextView2NavHeader);
 
         //declarisatie van functies
